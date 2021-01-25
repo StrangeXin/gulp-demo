@@ -13,6 +13,7 @@
     "gulp-clean": "^0.4.0",
     "gulp-rev": "^9.0.0",
     "gulp-rev-all": "^2.0.3",
-    "gulp-rev-collector": "^1.3.3"
+    "gulp-rev-collector": "^1.3.3",
+    "gulp-rev-dist-clean": "^3.0.2"
   }
 }
