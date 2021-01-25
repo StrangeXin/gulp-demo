@@ -1,38 +1,17 @@
-var gulp = require('gulp')
-var RevAll = require('gulp-rev-all')
-var rev = require('gulp-rev')
-var clean = require('gulp-clean')
-var RevClean = require('gulp-rev-dist-clean')
+const { src, dest, series } = require('gulp')
+const revAll = require('gulp-rev-all')
+const del = require('del');
 
-function transpile(cb) {
-  // body omitted
-  cb();
+function del_dist() {
+  return del(['dist']);
 }
 
-function bundle(cb) {
-  // body omitted
-  cb();
+function build() {
+  return src(["src/**"])
+    .pipe(revAll.revision({ dontRenameFile: [".html"] }))
+    .pipe(dest('dist'))
+    .pipe(revAll.manifestFile())
+    .pipe(dest('dist'));
 }
 
-function defaultTask(cb) {
-  // place code for your default task here
-  cb();
-}
-
-// exports.build = series(transpile, bundle);
-// exports.default = defaultTask
-
-gulp.task("clean", function () {
-  return gulp.src("dist/*")
-    .pipe(clean({ force: true }))
-})
-
-gulp.task("build", function () {
-  return gulp.src(["src/**"])
-    .pipe(RevAll.revision({ dontRenameFile: [".html"] }))
-    .pipe(gulp.dest('dist'))
-    .pipe(RevAll.manifestFile())
-    .pipe(gulp.dest('dist'));
-})
-
-gulp.task("default", gulp.series('clean', 'build'));
+exports.default = series(del_dist, build)
