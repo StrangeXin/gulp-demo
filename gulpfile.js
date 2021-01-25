@@ -22,32 +22,17 @@ function defaultTask(cb) {
 // exports.build = series(transpile, bundle);
 // exports.default = defaultTask
 
-gulp.task("default", function () {
+gulp.task("clean", function () {
+  return gulp.src("dist/*")
+    .pipe(clean({ force: true }))
+})
+
+gulp.task("build", function () {
   return gulp.src(["src/**"])
     .pipe(RevAll.revision({ dontRenameFile: [".html"] }))
     .pipe(gulp.dest('dist'))
     .pipe(RevAll.manifestFile())
-    .pipe(gulp.dest('dist'))
-  // .pipe(RevAll.versionFile())
-  // .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'));
 })
 
-gulp.task("rev", function () {
-  return gulp.src(["src/**"])
-    .pipe(RevAll.revision({ dontRenameFile: [".html"] }))
-    .pipe(gulp.dest('dist'))
-    .pipe(RevAll.manifestFile())
-    .pipe(gulp.dest('dist'))
-  // .pipe(RevAll.versionFile())
-  // .pipe(gulp.dest('dist'));
-})
-
-// gulp.task("clean", function () {
-//   return gulp.src("dist/*")
-//     .pipe(clean({force: true}))
-// })
-
-gulp.task("cleana", function () {
-  return gulp.src(['dist/js/*'])
-    .pipe(RevClean('dist/rev-manifest.json'))
-})
+gulp.task("default", gulp.series('clean', 'build'));
