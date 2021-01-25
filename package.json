@@ -11,6 +11,7 @@
   "devDependencies": {
     "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "gulp-rev-all": "^2.0.3"
+    "gulp-rev-all": "^2.0.3",
+    "gulp-useref": "^5.0.0"
   }
 }
