@@ -14,11 +14,7 @@
     "browser-sync": "^2.26.14",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
-    "gulp-filter": "^6.0.0",
-    "gulp-htmlmin": "^5.0.1",
     "gulp-rev-all": "^2.0.3",
-    "gulp-uglify": "^3.0.2",
-    "gulp-useref": "^5.0.0",
     "http-proxy-middleware": "^1.0.6"
   }
 }
