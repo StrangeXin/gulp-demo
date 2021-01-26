@@ -1,6 +1,7 @@
 const { src, dest, series } = require('gulp')
 const revAll = require('gulp-rev-all') //给静态资源添加hash值，并更新文件依赖
 const del = require('del')  //删除文件夹
+const imagemin = require('gulp-imagemin')  //图片压缩
 const browserSync = require('browser-sync').create() //多设备实时浏览器同步更新服务
 const { createProxyMiddleware } = require('http-proxy-middleware') //本地开发代理跨域请求插件
 const proxy = createProxyMiddleware(['/api'],{
@@ -20,6 +21,7 @@ function del_dist() {
 function build() {
   return src(["src/**"])
     .pipe(revAll.revision({ dontRenameFile: [".html"] }))
+    .pipe(imagemin())
     .pipe(dest('dist'));
 }
 
